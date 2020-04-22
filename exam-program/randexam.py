@@ -39,11 +39,12 @@ def createquiz(quiznum):
                 for i in range(4):
                     f.write('\n  %s) %s' %('ABCD'[i],answerOptions[i]))
                 f.write('\n\n')
-                answers['file %s' %(quiznum)].append(('Answer for question %s' %(qnum),'ABCD'[answerOptions.index(correctAnswer)]))
+                answers['file %s' %(quiznum)].append(('Answer for question %s' %(qnum+1),'ABCD'[answerOptions.index(correctAnswer)]))
 
     with open(foldername + '/answers.json','w') as f: #writing the answers json file
         json.dump(answers,f)
 
+createquiz(10)
 
 try:
     createquiz(10)
