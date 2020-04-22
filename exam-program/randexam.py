@@ -25,8 +25,9 @@ def createquiz(quiznum):
             f.write('Name:\n\nDate:\n\nPeriod:\n\n')
             f.write((' ' * 20) + 'State capital quiz (form {})'.format(i + 1))
             f.write('\n\n')
-
-            for qnum in range(50): #create 50 random questions for each of the files with random options and one correct answer
+            answers = {}
+            answers['file %s' %(quiznum)] = []
+            for qnum in range(50): #create 50 random questions for each of the files with random options and one correct answer    
                 correctAnswer = stateCapital[state[qnum]]
                 wrongAnswer = list(stateCapital.values())
                 del wrongAnswer[wrongAnswer.index(correctAnswer)]
@@ -37,10 +38,16 @@ def createquiz(quiznum):
                 for i in range(4):
                     f.write('\n  %s) %s' %('ABCD'[i],answerOptions[i]))
                 f.write('\n\n')
+                answers['file %s' %(quiznum)].append(('Answer for question %s' %(qnum),'ABCD'[answerOptions.index(correctAnswer)]))
+
+    with open(foldername + '/answers.json','w') as f: #writing the answers json file
+        json.dump(answers,f)
+
+
 try:
     createquiz(10)
 except ValueError as v:
     print('error found!',v)
 
 print('done!')
-        #with open(foldername + '/' +'answerfile{}'.format(quiznum + 1),'w') as f:
+        
