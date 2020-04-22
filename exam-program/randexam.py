@@ -10,12 +10,14 @@ def createquiz(quiznum):
     foldername = 'quizes {}-{}-{}'.format(now[0],now[1],now[2]) #variable folder name based on date
 
     with open('capital.json') as f: #reading the json file for creating a local dict
-        stateCapital = json.load(f)
+        stateCapital = json.load(f) 
 
     if not os.path.exists(foldername): #create new dir based on the current date if does not exist
         os.makedirs(foldername)
 
     state = list(stateCapital.keys()) #states
+
+    answers = {}#the answers file
     for i in range(quiznum):
 
         random.shuffle(state) #shuffeling states
@@ -25,7 +27,6 @@ def createquiz(quiznum):
             f.write('Name:\n\nDate:\n\nPeriod:\n\n')
             f.write((' ' * 20) + 'State capital quiz (form {})'.format(i + 1))
             f.write('\n\n')
-            answers = {}
             answers['file %s' %(quiznum)] = []
             for qnum in range(50): #create 50 random questions for each of the files with random options and one correct answer    
                 correctAnswer = stateCapital[state[qnum]]
