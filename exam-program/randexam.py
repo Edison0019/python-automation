@@ -27,7 +27,7 @@ def createquiz(quiznum):
             f.write('Name:\n\nDate:\n\nPeriod:\n\n')
             f.write((' ' * 20) + 'State capital quiz (form {})'.format(i + 1))
             f.write('\n\n')
-            answers['file %s' %(quiznum)] = []
+            answers['quizfile %s' %(i+1)] = []
             for qnum in range(50): #create 50 random questions for each of the files with random options and one correct answer    
                 correctAnswer = stateCapital[state[qnum]]
                 wrongAnswer = list(stateCapital.values())
@@ -36,10 +36,10 @@ def createquiz(quiznum):
                 answerOptions = [correctAnswer] + wrongAnswer
                 random.shuffle(answerOptions)
                 f.write('%s. What is the capital of %s? \n\n' %(qnum,state[qnum]))
-                for i in range(4):
-                    f.write('\n  %s) %s' %('ABCD'[i],answerOptions[i]))
+                for x in range(4):
+                    f.write('\n  %s) %s' %('ABCD'[x],answerOptions[x]))
                 f.write('\n\n')
-                answers['file %s' %(quiznum)].append(('Answer for question %s' %(qnum+1),'ABCD'[answerOptions.index(correctAnswer)]))
+                answers['quizfile %s' %(i+1)].append(('Answer for question %s' %(qnum+1),'ABCD'[answerOptions.index(correctAnswer)]))
 
     with open(foldername + '/answers.json','w') as f: #writing the answers json file
         json.dump(answers,f)
