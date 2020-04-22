@@ -44,8 +44,6 @@ def createquiz(quiznum):
     with open(foldername + '/answers.json','w') as f: #writing the answers json file
         json.dump(answers,f)
 
-createquiz(10)
-
 try:
     createquiz(10)
 except ValueError as v:
