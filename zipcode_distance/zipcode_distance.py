@@ -28,7 +28,6 @@ def distance(reference,file):
     for z in cleanzip:
         x = search.by_zipcode(int(z))
         zlatlog.append((x.lat,x.lng))
-    print(len(zlatlog)) #DELETE ME!!!!!!!!!!!!!
 
     #get a list of distances
     refzip = search.by_zipcode(reference)
