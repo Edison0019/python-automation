@@ -24,17 +24,17 @@ def distance(reference,file):
 
     #get latitude and longitud for each zip code and the reference zip code
     search = SearchEngine(simple_zipcode=True)
-    zlatlog = {}
+    zlatlog = []
     for z in cleanzip:
         x = search.by_zipcode(int(z))
-        zlatlog[z] = (x.lat,x.lng)
+        zlatlog.append((x.lat,x.lng))
+    print(len(zlatlog)) #DELETE ME!!!!!!!!!!!!!
 
     #get a list of distances
     refzip = search.by_zipcode(reference)
     kmdist = []
     for i in zlatlog:
-        d2 = (zlatlog[i][0],zlatlog[i][1])
-        kmdist.append(coordkm(refzip.lat,refzip.lng,zlatlog[i][0],zlatlog[i][1]))
+        kmdist.append(coordkm(refzip.lat,refzip.lng,i[0],i[1]))
     
     #write the contents to a file
     with open(str(reference)+'.txt','w') as f:
