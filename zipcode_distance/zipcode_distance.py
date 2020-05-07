@@ -4,16 +4,20 @@ from uszipcode import SearchEngine
 
 #getting the distance of two pair of coordinates
 def coordkm(lat1,lon1,lat2,lon2):
-    import math
-    if lat2 == None or lon2 == None:
+    if lat2 == None:
         return 'None'
-    R = 6373.0
-    dlon = lon2 - lon1
-    dlat = lat2 - lat1
-    a = math.sin(dlat / 2)**2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2)**2
-    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
-    distance = R * c
-    return distance
+    #this will return the distance of two pair of coordinates in miles
+    import math
+    pi = 3.14159265358979
+    D2R = pi / 180
+    lat1 = D2R * lat1
+    lat2 = D2R * lat2
+    dLon = D2R * (lon2 - lon1) 
+
+    x = math.sin(lat1) * math.sin(lat2) + math.cos(lat1) * math.cos(lat2) * math.cos(dLon)
+    y = math.sqrt((math.cos(lat2) * math.sin(dLon)) ** 2 + (math.cos(lat1) * math.sin(lat2) - math.sin(lat1) * math.cos(lat2) * math.cos(dLon)) ** 2)
+    result = math.atan2(x, y)
+    return result
 
 def distance(reference,file):
     with open(file,'r') as f:
