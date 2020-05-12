@@ -8,7 +8,7 @@ def coordkm(lat1,lon1,lat2,lon2):
         return 'None'
     #this will return the distance of two pair of coordinates in miles
     import math
-    pi = 3.14159265358979
+    pi = math.pi
     D2R = pi / 180
     lat1 = D2R * lat1
     lat2 = D2R * lat2
