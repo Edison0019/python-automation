@@ -4,7 +4,7 @@ import zipfile,os,pathlib #this for creating paths for both unix and MS dos oper
 
 def zipf(folder):
     path = os.path.abspath(pathlib.Path(folder))
-    with zipfile.ZipFile('newfile.zip','w') as zfile:
+    with zipfile.ZipFile('newfile.zip','w',zipfile.ZIP_DEFLATED) as zfile:
         for foldername, subfoldernale,filename in os.walk(folder):
             for files in filename:
                 filepath = os.path.join(foldername,files)
